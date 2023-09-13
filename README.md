@@ -4,8 +4,6 @@
 
 You can find an article explaining the implementation here: [Medium](https://medium.com/@caiobzen/2048-swiftui-dda67949beb)
 
-<a href="https://codeclimate.com/github/caiobzen/2048-swiftui/maintainability"><img src="https://api.codeclimate.com/v1/badges/a56aa52cda5f80c18494/maintainability" /></a>
-
 --- 
 
 ### 🕹️ The Game
@@ -24,8 +22,3 @@ After watching a series of [The Coding Train](https://www.youtube.com/watch?v=JS
 ### 🤓 How to run
 Since this project has zero dependencies on external frameworks, all you need is:
 - `⌘ + R` *(and that's it)*
-
-### ☑️ Todo
-1. Stats (number of moves, time played, etc)
-2. Work on the animations (there's no animation for shifting tiles along the board for example)
-3. ~A way to UNDO an action.~ (thanks [@t0a0](https://github.com/t0a0) for doing that!)
