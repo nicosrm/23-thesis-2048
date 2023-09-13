@@ -1,24 +1,23 @@
-# 2048 Game
+# 2048
 
-###### The 2048 game remake using [SwiftUI](https://developer.apple.com/xcode/swiftui) and [Combine](https://developer.apple.com/documentation/combine)
+This is a fork of [`caiobzen/2048-swiftui`](https://github.com/caiobzen/2048-swiftui). The code will be extended to run on visionOS. The goal is to validate the conformancy of the code with Apple's [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) for visionOS.
 
-You can find an article explaining the implementation here: [Medium](https://medium.com/@caiobzen/2048-swiftui-dda67949beb)
-
---- 
-
-### 🕹️ The Game
+## Game
 
 2048 is a single-player sliding block puzzle game designed by Italian web developer [Gabriele Cirulli](https://gabrielecirulli.com). The game's objective is to slide numbered tiles on a grid to combine them to create a tile with the number 2048. However, one can continue to play the game after reaching the goal, creating tiles with larger numbers.
 
+## Requirements
 
-### 🚂 Motivation
+- iOS 17+
+- [XCode 15](https://developer.apple.com/xcode/)
+- [Bazel](https://bazel.build/)
 
-After watching a series of [The Coding Train](https://www.youtube.com/watch?v=JSn-DJU8qf0) on how to implement the 2048 game in JavaScript with P5, I got the inspiration to do the same with SwiftUI and Combine. So some of the logics behind matrices manipulation I borrowed from Mr. [Daniel Shiffman](https://twitter.com/shiffman) *(Keep inspiring people with your videos <3)*.
+## Setup
 
-### 💻 Requirements
-- iOS 13+
-- XCode 11
+Run the following commands to build SwiftLint and the Xcode project.
 
-### 🤓 How to run
-Since this project has zero dependencies on external frameworks, all you need is:
-- `⌘ + R` *(and that's it)*
+```shell
+bazel build -c opt @SwiftLint//:swiftlint
+
+bazel run swiftlint_xcodeproj
+```
