@@ -1,6 +1,7 @@
 import SwiftUI
 
 extension Color {
+
     static var gameBackground: Color {
         .init(red: 251/255, green: 248/255, blue: 240/255)
     }
@@ -44,15 +45,15 @@ extension Color {
     static var tileSixtyFour: Color {
         .init(red: 214/255, green: 113/255, blue: 85/255)
     }
-    
+
     static var tileMax: Color {
         .init(red: 229/255, green: 204/255, blue: 132/255)
     }
-    
+
     static var tileDarkTitle: Color {
         .init(red: 116/255, green: 110/255, blue: 103/255)
     }
-    
+
     static var customYellow: Color {
         .init(red: 224/255, green: 196/255, blue: 95/255)
     }

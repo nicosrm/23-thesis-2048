@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct SmallActionButton: View {
+
     let title: String
-    let action: () -> ()
+    let action: () -> Void
     var enabled: Bool
+
     var body: some View {
         Button(action: action) {
             Text(title)
@@ -13,11 +15,12 @@ struct SmallActionButton: View {
                 .background(enabled ? Color.orange : Color(UIColor.orange.withAlphaComponent(0.5)))
                 .foregroundColor(enabled ? Color.white : Color(UIColor.white.withAlphaComponent(0.5)))
                 .cornerRadius(4)
-            }.disabled(!enabled)
+        }.disabled(!enabled)
     }
 }
 
 struct SmallActionButton_Previews: PreviewProvider {
+
     static var previews: some View {
         SmallActionButton(title: "MENU", action: {}, enabled: false)
     }

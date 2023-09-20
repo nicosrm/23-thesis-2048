@@ -1,10 +1,11 @@
 import SwiftUI
 
 struct MenuView: View {
-    let newGameAction: () -> ()
-    let resetScoreAction: () -> ()
+
+    let newGameAction: () -> Void
+    let resetScoreAction: () -> Void
     @State private var showConfirmation = false
-    
+
     var body: some View {
         VStack {
             HeaderBarTitle(title: "MENU")
@@ -23,25 +24,30 @@ struct MenuView: View {
 }
 
 extension MenuView {
+
     private var confirmationAlert: Alert {
         Alert(title: confirmationMessage,
               primaryButton: resetScoreAlertButton,
               secondaryButton: .cancel())
     }
-    
+
     private var confirmationMessage: Text {
         Text("Are you sure you want to erase your best score?")
     }
-    
+
     private var resetScoreAlertButton: Alert.Button {
         .default(Text("Yeah, whatever"), action: self.resetScoreAction)
     }
 }
 
 struct MenuView_Previews: PreviewProvider {
+
     static var previews: some View {
         Group {
-            MenuView(newGameAction:{}){}
+            MenuView(
+                newGameAction: {},
+                resetScoreAction: {}
+            )
         }
     }
 }

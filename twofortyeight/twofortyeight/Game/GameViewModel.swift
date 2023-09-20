@@ -2,18 +2,19 @@ import Combine
 import UIKit
 
 class GameViewModel: ObservableObject {
+
     private(set) var engine: Engine
     private(set) var storage: Storage
     private(set) var stateTracker: StateTracker
-  
+
     @Published var isGameOver = false
-    private(set) var addedTile: (Int, Int)? = nil {
+    private(set) var addedTile: (Int, Int)? {
         didSet { UIImpactFeedbackGenerator().impactOccurred() }
     }
     private(set) var bestScore: Int = .zero {
         didSet { storage.save(bestScore: bestScore) }
     }
-    
+
     var numberOfMoves: Int {
         return stateTracker.statesCount - 1
     }
@@ -28,7 +29,7 @@ class GameViewModel: ObservableObject {
             storage.save(board: state.board)
         }
     }
-    
+
     init(_ engine: Engine, storage: Storage, stateTracker: StateTracker) {
         self.engine = engine
         self.storage = storage
@@ -36,17 +37,17 @@ class GameViewModel: ObservableObject {
         self.state = stateTracker.last
         self.bestScore = max(storage.bestScore, storage.score)
     }
-    
+
     func start() {
         if state.board.isMatrixEmpty { reset() }
     }
-    
+
     func addNumber() {
         let result = engine.addNumber(state.board)
         state = stateTracker.updateCurrent(with: result.newBoard)
         addedTile = result.addedTile
     }
-    
+
     func push(_ direction: Direction) {
         let result = engine.push(state.board, to: direction)
         let boardHasChanged = !state.board.isEqual(result.newBoard)
@@ -55,18 +56,18 @@ class GameViewModel: ObservableObject {
             addNumber()
         }
     }
-    
+
     func undo() {
         state = stateTracker.undo()
     }
-    
+
     func reset() {
         state = stateTracker.reset(with: (engine.blankBoard, .zero))
         addNumber()
     }
-    
+
     func eraseBestScore() {
         bestScore = .zero
     }
-    
+
 }

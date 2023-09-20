@@ -1,6 +1,7 @@
 import Foundation
 
 extension Array where Iterator.Element == [Int] {
+
     subscript(row: Int, column: Int) -> Int {
         get {
             return self[row][column]
@@ -9,7 +10,7 @@ extension Array where Iterator.Element == [Int] {
             self[row][column] = newValue
         }
     }
-    
+
     var isMatrixEmpty: Bool {
         reduce(0) { $0 + $1.reduce(0, +) } == .zero
     }
@@ -19,7 +20,7 @@ extension Array where Iterator.Element == [Int] {
     }
 
     private func indexesWith(_ value: Int) -> [(Int, Int)] {
-        var indexes:[(Int, Int)] = []
+        var indexes: [(Int, Int)] = []
 
         for row in 0..<count {
             indexes.append(contentsOf: indexesOf(row, with: value))
@@ -28,12 +29,11 @@ extension Array where Iterator.Element == [Int] {
         return indexes
     }
 
-    private func indexesOf(_ row: Int, with value: Int)  -> [(Int, Int)] {
+    private func indexesOf(_ row: Int, with value: Int) -> [(Int, Int)] {
         var indexes: [(Int, Int)] = []
-        for column in 0..<count {
-            if self[row, column] == value {
-                indexes.append((row,column))
-            }
+        for column in 0..<count
+        where self[row, column] == value {
+            indexes.append((row, column))
         }
         return indexes
     }
@@ -41,10 +41,9 @@ extension Array where Iterator.Element == [Int] {
     var canCombineValues: Bool {
         guard hasZeros == false else { return true }
         for row in 0..<count {
-            for column in 0..<count {
-                if canCombineItemAt(row: row, column: column) {
-                    return true
-                }
+            for column in 0..<count
+            where canCombineItemAt(row: row, column: column) {
+                return true
             }
         }
         return false
@@ -61,17 +60,17 @@ extension Array where Iterator.Element == [Int] {
     }
 
     private func canCombineVertically(row: Int, column: Int) -> Bool {
-        row != count - 1 && self[row, column] == self[row+1,column]
+        row != count - 1 && self[row, column] == self[row+1, column]
     }
 
     private func canCombineHorizontally(row: Int, column: Int) -> Bool {
         column != count - 1 && self[row, column] == self[row, column+1]
     }
-    
+
     func isEqual(_ matrix: [[Int]]) -> Bool {
         return elementsEqual(matrix)
     }
-    
+
     func toMatrix() {
         for row in 0..<count {
             print("[\(self[row])]")

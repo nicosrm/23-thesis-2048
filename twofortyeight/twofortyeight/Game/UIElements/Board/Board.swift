@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct Board: View {
+
     var board: Matrix
-    var addedTile: (Int, Int)? = nil
-    
+    var addedTile: (Int, Int)?
+
     private func wasAdded(row: Int, column: Int) -> Bool {
         addedTile?.0 == row && addedTile?.1 == column
     }
-    
+
     var body: some View {
         VStack {
             ForEach(0..<self.board.count, id: \.self) { row in
@@ -27,6 +28,7 @@ struct Board: View {
 
 #if DEBUG
 struct Board_Previews: PreviewProvider {
+
     static var previews: some View {
         Board(board: GameEngine().blankBoard)
     }

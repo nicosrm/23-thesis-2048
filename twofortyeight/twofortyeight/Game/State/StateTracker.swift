@@ -11,14 +11,14 @@ import Foundation
 typealias GameState = (board: Matrix, score: Int)
 
 protocol StateTracker {
+
     func next(with state: GameState) -> GameState
     func updateCurrent(with board: Matrix) -> GameState
     func reset(with state: GameState) -> GameState
 
     var isUndoable: Bool {get}
     func undo() -> GameState
-    
+
     var statesCount: Int {get}
     var last: GameState {get}
 }
-

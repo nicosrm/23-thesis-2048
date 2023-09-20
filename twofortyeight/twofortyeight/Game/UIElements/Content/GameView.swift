@@ -1,9 +1,10 @@
 import SwiftUI
 
 struct GameView: View {
+
     @ObservedObject var viewModel: GameViewModel
     @State var showMenu = false
-    
+
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
             Header(score: viewModel.state.score, bestScore: viewModel.bestScore, menuAction: {
@@ -20,14 +21,16 @@ struct GameView: View {
                minHeight: .zero,
                maxHeight: .infinity,
                alignment: .center)
-            .background(Color.gameBackground)
-            .background(Menu())
-            .background(GameOver())
-            .edgesIgnoringSafeArea(.all)
+        .background(Color.gameBackground)
+        .background(Menu())
+        .background(GameOver())
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
+// swiftlint:disable identifier_name
 extension GameView {
+
     private func Menu() -> some View {
         EmptyView().sheet(isPresented: $showMenu) {
             MenuView(newGameAction: {
@@ -39,7 +42,7 @@ extension GameView {
             })
         }
     }
-    
+
     private func GameOver() -> some View {
         EmptyView().sheet(isPresented: $viewModel.isGameOver) {
             GameOverView(score: self.viewModel.state.score, moves: self.viewModel.numberOfMoves) {
@@ -48,8 +51,10 @@ extension GameView {
         }
     }
 }
+// swiftlint:enable identifier_name
 
 struct GameView_Previews: PreviewProvider {
+
     static var previews: some View {
         let engine = GameEngine()
         let storage = LocalStorage()
