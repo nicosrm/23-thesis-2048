@@ -5,15 +5,21 @@ struct ActionButton: View {
     let title: String
     let action: () -> Void
 
+    var backgroundColor = Color.orange
+
     var body: some View {
         Button(action: action) {
             Text(title)
                 .font(.system(size: 20, weight: .black, design: .rounded))
-                .foregroundColor(.white)
                 .padding(12)
-                .background(Color.orange)
-                .cornerRadius(6)
         }
+        #if !os(visionOS)
+        .cornerRadius(6)
+        .background(backgroundColor)
+        #else
+        .background(backgroundColor, in: .rect(cornerRadius: 10.0))
+        #endif
+        .foregroundColor(.white)
     }
 }
 
