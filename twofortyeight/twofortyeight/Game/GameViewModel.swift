@@ -9,7 +9,12 @@ class GameViewModel: ObservableObject {
 
     @Published var isGameOver = false
     private(set) var addedTile: (Int, Int)? {
-        didSet { UIImpactFeedbackGenerator().impactOccurred() }
+        didSet {
+            #if !os(visionOS)
+            // play haptics
+            UIImpactFeedbackGenerator().impactOccurred()
+            #endif
+        }
     }
     private(set) var bestScore: Int = .zero {
         didSet { storage.save(bestScore: bestScore) }

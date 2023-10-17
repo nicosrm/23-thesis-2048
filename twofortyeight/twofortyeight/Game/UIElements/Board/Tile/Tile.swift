@@ -38,7 +38,7 @@ struct Tile: View {
             .background(style.backgroundColor)
             .cornerRadius(3)
             .shadow(color: shadowColor, radius: 4, x: 0, y: 0)
-            .animation(wasAdded ? .easeIn : .none)
+            .animation(wasAdded ? .easeIn : .none, value: UUID())
     }
 }
 
