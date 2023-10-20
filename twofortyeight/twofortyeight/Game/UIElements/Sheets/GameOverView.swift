@@ -23,6 +23,7 @@ struct GameOverView: View {
 
             Group {
                 ActionButton(title: "NEW GAME", action: action)
+                    .clipShape(.capsule)
             }.padding()
             Spacer()
         }
