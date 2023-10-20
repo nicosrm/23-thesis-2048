@@ -16,6 +16,7 @@ struct MenuView: View {
                 ActionButton(title: "RESET BEST SCORE") { self.showConfirmation.toggle() }
                     .accessibility(identifier: "resetBestScoreButton")
             }
+            .buttonBorderShape(.roundedRectangle(radius: 10.0))
             Spacer()
         }
         .background(Color.white)
