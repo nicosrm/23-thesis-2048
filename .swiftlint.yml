@@ -1,5 +1,2 @@
 included:
   - twofortyeight/twofortyeight
-
-opt_in_rules:
-  - button_background_notifier
